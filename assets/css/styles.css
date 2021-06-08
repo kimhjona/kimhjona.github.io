@@ -5,8 +5,12 @@ body {
   font-size: 20px;
 }
 
+.headshot {
+  width: 75px;
+}
+
 .container {
-  max-width: 30rem;
+  max-width: 31rem;
   margin: 0 1rem;
 }
 
@@ -105,12 +109,6 @@ p {
   display: flex;
   margin-right: 10px;
   color: initial;
-}
-
-.pod-links img {
-  margin-right: 5px;
-  width: 25px;
-  opacity: 0.7;
 }
 
 @media (max-width: 550px) {
