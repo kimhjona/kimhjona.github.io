@@ -1,0 +1,91 @@
+<!DOCTYPE html> <!--[if !IE]><!-->
+<html lang="en">
+  <!--<![endif]-->
+  <head>
+    <title>Jon Kim's Website</title>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="https://i.imgur.com/kP6rBUi.png" type="image/gif" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/animation/wickedcss.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com/3.2.4"></script>
+  </head>
+
+  <body>
+    <div
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+    >
+      <div class="bg-white p-8 rounded-lg">
+        <h2 class="text-xl font-bold mb-4">Are you over 18?</h2>
+        <div class="flex justify-between">
+          <button
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+            onclick="showContent()"
+          >
+            Yes
+          </button>
+          <button
+            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+            onclick="window.location.href='https://www.jona.kim/'"
+          >
+            No
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden" id="content">
+      <div
+        class="grid-cols-3 p-20 space-y-2 bg-blue-200 lg:space-y-0 lg:grid lg:gap-3 lg:grid-rows-3"
+      >
+        <h1 class="text-5xl font-bold leading-bold mt-3 mb-4 text-blue-800">
+          A collection of drawings from a figure drawing class.
+        </h1>
+        <div class="w-full rounded">
+          <img src="https://i.imgur.com/mXOjsWn.jpg" alt="image" />
+        </div>
+        <div class="w-full col-span-2 row-span-2 rounded">
+          <img src="https://i.imgur.com/9KoRt4n.jpg" alt="image" />
+        </div>
+        <div class="w-full rounded-lg">
+          <img src="https://i.imgur.com/Ug1Z3Du.jpg" alt="image" />
+        </div>
+        <div class="w-full rounded">
+          <img src="https://i.imgur.com/fjyl9kO.jpg" alt="image" />
+        </div>
+        <div class="w-full rounded-lg">
+          <img src="https://i.imgur.com/GfQoK8E.jpg" alt="image" />
+        </div>
+        <div class="w-full rounded">
+          <img src="https://i.imgur.com/IWTHmpt.jpg" alt="image" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showContent() {
+        document.getElementById("content").classList.remove("hidden");
+        document.querySelector("body > div").remove();
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+  </body>
+</html>
