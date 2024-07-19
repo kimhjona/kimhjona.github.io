@@ -1,0 +1,67 @@
+html {
+    padding: 1rem;
+
+    header {
+
+        .name {
+            font-size: 1.7rem;
+            font-weight: bold;
+        }
+
+        font-size: 1.2rem;
+    }
+
+    header, section {
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 100%;
+        max-width: 36rem;
+    }
+
+    header, section:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    .contacts > div:not(:last-child) {
+        margin-bottom: .5rem;
+    }
+
+    .section-header {
+        font-size: 1.5rem;
+    }
+
+    .company-title {
+        font-size: 1rem;
+        margin-bottom: .2rem;
+        font-weight: bold;
+    }
+    
+    .italics {
+        font-style: italic;
+    }
+
+    .company:not(:last-child) {
+        margin-bottom: .5rem;
+    }
+    
+    @media (min-width: 620px) {
+        .company {
+            display: grid;
+            grid-template-columns: clamp(8em, 20vw, 1.5rem) 1fr;
+            align-items: baseline;
+        }
+
+        .contacts {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0;
+
+            > div:not(:last-child) {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
