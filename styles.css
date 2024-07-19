@@ -45,6 +45,7 @@ html {
 
     .company:not(:last-child) {
         margin-bottom: .5rem;
+        
     }
     
     @media (min-width: 620px) {
