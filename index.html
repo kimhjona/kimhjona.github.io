@@ -34,90 +34,74 @@
     </header>
     <main>
       <section>
-        <div>
-          I'm an experienced software engineer with domain knowledge in capital
-          markets, financial services, and ecommerce. I enjoy working with
-          modern React, TypeScript, build tools, visualizations, and WebSockets.
-          My goal is to continue to hone my craft at building concise, elegant,
-          and useful software.
-        </div>
-      </section>
-      <section>
-        <div class="section-header">Experience</div>
-        <div class="company">
-          <div>
-            <div class="italics">2020 - 2023</div>
+        <div class="section-header">Chat with JonBot</div>
+        <div id="chat-container" class="w-full">
+          <div class="bg-white shadow-md rounded-lg w-full">
+            <div
+              id="chatbox"
+              class="p-4 h-80 border-t rounded-lg overflow-y-auto"
+            >
+              <!-- Chat messages will be displayed here -->
+              <div class="mb-2 text-right">
+                <p
+                  class="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block"
+                >
+                  Hello...What is this?
+                </p>
+              </div>
+              <div class="mb-2">
+                <p
+                  class="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block"
+                >
+                  Hi! Welcome to JonBot. What do you want to know about Jon Kim?
+                </p>
+              </div>
+            </div>
+            <div
+              class="p-4 border-t flex flex-wrap justify-start gap-y-2 gap-x-2"
+            >
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                Who is Jon?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                Where does Jon live?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                Jon haven't been employed since 2023. What has he been up to?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                How did Jon get into software development? What does he like
+                about it?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                What kind of work is Jon looking for?
+              </p>
+            </div>
+            <div class="p-4 border-t flex">
+              <input
+                id="user-input"
+                type="text"
+                placeholder="Type a message"
+                class="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                id="send-button"
+                class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300"
+              >
+                Send
+              </button>
+            </div>
           </div>
-          <div>
-            <div class="company-title">Virtu Financial</div>
-            <p>
-              • Took ownership over web topics and delivered several key feature
-              sets for order management platform
-            </p>
-            <p>
-              • Collaborated with designers and stakeholders to break down
-              business goals into technical deliverables
-            </p>
-            <p>
-              • Designed and maintained the library of grid and filter
-              components that became the go-to dev tools across the firm
-            </p>
-            <p>
-              • Built suite of services and custom tooling that enabled
-              publishing from and subscribing to streaming data
-            </p>
-            <p>
-              • Accelerated dev productivity by implementing scripts and build
-              tools that automated repetitive workflows
-            </p>
-            <p>
-              • Mentored interns and onboarded developers via pair programming,
-              info sessions, and code feedback
-            </p>
-          </div>
-        </div>
-        <div class="company">
-          <div>
-            <div class="italics">2018 - 2020</div>
-          </div>
-          <div>
-            <div class="company-title">Friendbuy</div>
-            <p>
-              • Built analytics dashboard using custom-built D3 visualizations
-              to provide insights into key metrics
-            </p>
-            <p>
-              • Created widget template library optimized for cross-browser
-              functionality, accessibility, and performance
-            </p>
-            <p>
-              • Built hundreds of custom widgets for enterprise clients and
-              provided technical onboarding support
-            </p>
-            <p>
-              • Trained the two people hired to build custom widgets as
-              self-serve product revenue grew 40%+ / year
-            </p>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div class="section-header">Education</div>
-        <div>
-          <div>
-            <span class="italics">2024 - 2027 (Expected)</span> | Georgia
-            Institute of Technology
-          </div>
-          <div>
-            Master of Science, Computer Science, Computing Systems
-            Specialization
-          </div>
-        </div>
-        <div>
-          <div>
-            <span class="italics">2010 - 2014</span> | Occidental College
-          </div>
-          <div>Bachelor of Arts, Economics, Math Minor</div>
         </div>
       </section>
       <section>
@@ -138,11 +122,237 @@
           <div>
             <a href="mailto:kimhjona@gmail.com">
               <div>Email</div>
-              <span>kimhjona@gmail.com</span>
+              <span>kimhjona [at] gmail.com</span>
             </a>
           </div>
         </div>
       </section>
     </main>
+
+    <script src=".env.js"></script>
+    <script type="application/json" id="myInfo">
+      {
+        "about_me": {
+          "name": "Jon Kim",
+          "location": "Seattle, WA",
+          "email": "kimhjona@gmail.com",
+          "website": "https://jona.kim",
+          "linkedin": "https://linkedin.com/in/jhyunkim",
+          "phone": "818.489.1550",
+          "summary": "Experienced software engineer with over 5 years of experience in capital markets, financial services, and e-commerce. Interested in solving real-world problems with code, always striving to learn more. After a year-long sabbatical, aiming to join an ambitious team with a compelling product.",
+          "introduction": "I have extensive experience building web applications for capital markets, financial services, and ecommerce. I enjoy working with modern React, TypeScript, build tools, visualizations, and WebSockets. My goal is to continue to hone my craft at building concise, elegant, and useful software.",
+          "experience": [
+            {
+              "company": "Virtu Financial",
+              "role": "Software Engineer",
+              "period": "March 2020 - June 2023",
+              "achievements": [
+                "Co-developed TritonX, a scalable web-based UI platform of real-time trading, analysis, and reporting tools, leading to the deprecation of legacy Java apps and creation of a client-facing OMS/EMS business offering",
+                "Led development of visualization and monitoring tools for Options trading desk as PnL grew 50% a year",
+                "Designed and maintained suite of grid and filter components, serving as the firm’s go-to developer tools",
+                "Contributed to library of custom tooling that enabled publishing from + subscribing to streaming data",
+                "Accelerated dev productivity by implementing scripts and build tools to automate repetitive workflows",
+                "Collaborated with designers and stakeholders to break down business goals into technical deliverables",
+                "Mentored interns and onboarded developers via pair programming, info sessions, and code feedback"
+              ],
+              "tech_stack": [
+                "TypeScript",
+                "React/Hooks",
+                "WebSockets",
+                "webpack",
+                "Node.js/npm",
+                "Java",
+                "API Gateway",
+                "Jest/Enzyme",
+                "ag-grid",
+                "Material UI",
+                "Storybook",
+                "SCSS",
+                "redux-saga",
+                "TeamCity CI/CD"
+              ]
+            },
+            {
+              "company": "Friendbuy",
+              "role": "Software Developer",
+              "period": "May 2018 - Feb 2020",
+              "achievements": [
+                "Co-developed the design and implementation of the client-facing widget editor, simplifying the client onboarding process and increasing per capita client success manager output by 25%",
+                "Built analytics dashboard using custom D3 visualizations to provide insights into key metrics, enabling clients to independently monitor the progress of their marketing campaigns",
+                "Created widget template library optimized for cross-browser functionality, accessibility, and performance, leading to the inception of a self-serve product category for the business and an additional $30k+ in MRR",
+                "Produced hundreds of custom widgets for enterprise clients and provided technical onboarding support",
+                "Trained the two people hired to build custom widgets as the rate of onboarding clients grew 20% YoY"
+              ],
+              "tech_stack": [
+                "TypeScript",
+                "React/Redux",
+                "webpack",
+                "Node.js/npm",
+                "git",
+                "nivo/D3",
+                "HTML/CSS",
+                "AWS S3"
+              ]
+            }
+          ],
+          "coding_projects": [
+            {
+              "name": "Food Oasis LA",
+              "role": "Developer",
+              "period": "Jan 2017 - Jan 2018",
+              "description": "Co-led frontend team for a civic project aimed at raising awareness of food deserts by helping users find local fresh produce.",
+              "achievements": [
+                "Architected major functionalities including dynamic filtering of results based on future open times.",
+                "Mentored volunteers in setup, workflow, and feature development.",
+                "Automated redundant tasks and improved workflow efficiency with Node scripts, reducing onboarding costs.",
+                "Codebase was donated to and acquired by Youth Policy Institute in January 2018."
+              ]
+            },
+            {
+              "name": "DejaVue",
+              "role": "Developer and Co-creator",
+              "period": "November 2016 - February 2017",
+              "description": "A Vue.js visualization Chrome developer tool designed to enhance debugging capabilities within Vue applications.",
+              "achievements": [
+                "Developed a parsing algorithm to identify and retrieve component data from Vue expando properties.",
+                "Implemented a dynamic D3 tree to visualize the component hierarchy, aiding in understanding application data.",
+                "Introduced time-traveling debugging by rendering historical state using the Chrome API.",
+                "Optimized performance by checking local storage for changes, reducing unnecessary re-renders.",
+                "Achieved 3000+ active users and garnered 700+ stars on GitHub."
+              ]
+            }
+          ],
+          "skills": {
+            "advanced": [
+              "React/Hooks",
+              "TypeScript",
+              "JavaScript",
+              "Redux",
+              "Node",
+              "visualizations and charts",
+              "WebSockets",
+              "HTML/CSS",
+              "AG Grid",
+              "analyzing and improving runtime performance"
+            ],
+            "intermediate": [
+              "build tools",
+              "Jest/Enzyme",
+              "Webpack",
+              "D3",
+              "Java",
+              "C++"
+            ]
+          },
+          "education": [
+            {
+              "institution": "Georgia Institute of Technology",
+              "degree": "Master of Science, Computer Science",
+              "period": "2024 - 2027 (Expected)"
+            },
+            {
+              "institution": "Occidental College",
+              "degree": "Bachelor of Arts, Economics & Math minor",
+              "period": "2010 - 2014"
+            }
+          ],
+          "interests": [
+            "Traveled to about 50 cities around the world in 2023, studying Mandarin Chinese and Korean.",
+            "Hosting dinner parties, participating in half-marathons, and Olympic triathlons."
+          ],
+          "github": {
+            "username": "kimhjona",
+            "url": "https://github.com/kimhjona",
+            "description": "Has 38 repositories available, showcasing various projects."
+          },
+          "podcast": {
+            "name": "Moon Tea Podcast",
+            "url": "moonteapodcast.com",
+            "description": "A podcast where Jon Kim and Hugh Berryman talk about Craft, Community, and Building Meaningful Careers, focusing on technology, design, and personal growth."
+          }
+        }
+      }
+    </script>
+
+    <script>
+      const token = env.API_KEY;
+      const myInfo = JSON.parse(document.getElementById("myInfo").textContent);
+
+      console.log({ myInfo });
+
+      const chatbox = document.getElementById("chatbox");
+      const userInput = document.getElementById("user-input");
+      const sendButton = document.getElementById("send-button");
+
+      // Add an event listener to the send button
+      sendButton.addEventListener("click", function () {
+        const userMessage = userInput.value;
+        if (userMessage.trim() !== "") {
+          addUserMessage(userMessage);
+          respondToUser(userMessage);
+          userInput.value = "";
+        }
+      });
+
+      userInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          const userMessage = userInput.value;
+          addUserMessage(userMessage);
+          respondToUser(userMessage);
+          userInput.value = "";
+        }
+      });
+
+      function addUserMessage(message) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("mb-2", "text-right");
+        messageElement.innerHTML = `<p class="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block">${message}</p>`;
+        chatbox.appendChild(messageElement);
+        chatbox.scrollTop = chatbox.scrollHeight;
+      }
+
+      function addBotMessage(message) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("mb-2");
+        messageElement.innerHTML = `<p class="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block">${message}</p>`;
+        chatbox.appendChild(messageElement);
+        chatbox.scrollTop = chatbox.scrollHeight;
+      }
+
+      function respondToUser(userMessage) {
+        fetch("https://api.ai21.com/studio/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            messages: [
+              {
+                role: "system",
+                content: `You are JonBot, and you exist to answer questions about Jon Kim. Your responses should reference the following JSON data: ${JSON.stringify(
+                  myInfo
+                )}. Do not generate answers based on any other knowledge. If asked anything not in this data, respond with 'I don't have information on that topic.'`,
+              },
+              { role: "user", content: userMessage },
+            ],
+            model: "jamba-1.5-mini",
+          }),
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            const message = data.choices[0].message.content;
+            addBotMessage(message);
+          });
+      }
+
+      document.querySelectorAll(".suggestion-box").forEach((box) => {
+        box.addEventListener("click", function () {
+          userInput.value = this.textContent.trim();
+        });
+      });
+    </script>
   </body>
 </html>

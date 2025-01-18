@@ -1,10 +1,10 @@
 {
   "name": "jonkim.me",
   "version": "1.0.0",
-  "description": "Just redoing my website in 2024",
-  "main": "index.html",
+  "description": "Personal website",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "python3 -m http.server 3000"
   },
   "author": "",
   "license": "ISC"
