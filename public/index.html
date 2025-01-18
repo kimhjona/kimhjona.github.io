@@ -68,11 +68,6 @@
               <p
                 class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
               >
-                Where does Jon live?
-              </p>
-              <p
-                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
-              >
                 Will Jon be my friend?
               </p>
               <p
@@ -134,7 +129,6 @@
       </section>
     </main>
 
-    <script src=".env.js"></script>
     <script type="application/json" id="myInfo">
       {
         "about_me": {
@@ -144,7 +138,7 @@
           "website": "https://jona.kim",
           "linkedin": "https://linkedin.com/in/jhyunkim",
           "phone": "818.489.1550",
-          "summary": "Experienced software engineer with over 5 years of experience in capital markets, financial services, and e-commerce. Interested in solving real-world problems with code, always striving to learn more. After a year-long sabbatical, aiming to join an ambitious team with a compelling product.",
+          "summary": "Experienced software engineer based out of Seattle, WA with over 5 years of experience in capital markets, financial services, and e-commerce. Interested in solving real-world problems with code, always striving to learn more. After a year-long sabbatical, aiming to join an ambitious team with a compelling product.",
           "introduction": "I have extensive experience building web applications for capital markets, financial services, and ecommerce. I enjoy working with modern React, TypeScript, build tools, visualizations, and WebSockets. My goal is to continue to hone my craft at building concise, elegant, and useful software.",
           "experience": [
             {
@@ -283,7 +277,6 @@
     </script>
 
     <script>
-      const token = env.API_KEY;
       const myInfo = JSON.parse(document.getElementById("myInfo").textContent);
 
       const chatbox = document.getElementById("chatbox");
@@ -326,11 +319,10 @@
       }
 
       function respondToUser(userMessage) {
-        fetch("https://api.ai21.com/studio/v1/chat/completions", {
+        fetch("/api/chat", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             messages: [
