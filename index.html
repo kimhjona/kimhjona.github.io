@@ -73,6 +73,11 @@
               <p
                 class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
               >
+                Will Jon be my friend?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
                 Jon haven't been employed since 2023. What has he been up to?
               </p>
               <p
@@ -222,6 +227,9 @@
               ]
             }
           ],
+          "friendship": [
+            "While Jon is not currently looking for new friends, JonBot is always happy to chat"
+          ],
           "skills": {
             "advanced": [
               "React/Hooks",
@@ -277,8 +285,6 @@
     <script>
       const token = env.API_KEY;
       const myInfo = JSON.parse(document.getElementById("myInfo").textContent);
-
-      console.log({ myInfo });
 
       const chatbox = document.getElementById("chatbox");
       const userInput = document.getElementById("user-input");
