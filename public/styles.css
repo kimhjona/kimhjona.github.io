@@ -1,67 +1,112 @@
 html {
-    padding: 1rem;
+  padding: 1rem;
 
-    header {
-
-        .name {
-            font-size: 1.7rem;
-            font-weight: bold;
-        }
-
-        font-size: 1.2rem;
+  header {
+    .name {
+      font-size: 1.7rem;
+      font-weight: bold;
     }
 
-    header, section {
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        width: 100%;
-        max-width: 36rem;
+    font-size: 1.2rem;
+  }
+
+  header,
+  section {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  header,
+  section:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  .contacts > div:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header {
+    font-size: 1.5rem;
+  }
+
+  .company-title {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+  }
+
+  .italics {
+    font-style: italic;
+  }
+
+  .company:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 620px) {
+    .company {
+      display: grid;
+      grid-template-columns: clamp(8em, 20vw, 1.5rem) 1fr;
+      align-items: baseline;
     }
 
-    header, section:not(:last-child) {
-        margin-bottom: 1rem;
-    }
+    .contacts {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0;
 
-    .contacts > div:not(:last-child) {
-        margin-bottom: .5rem;
+      > div:not(:last-child) {
+        margin-bottom: 0;
+      }
     }
+  }
+  .projects-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
 
-    .section-header {
-        font-size: 1.5rem;
-    }
+  .project-item {
+    margin-bottom: 0.75rem;
+    transition: transform 0.2s ease;
+  }
 
-    .company-title {
-        font-size: 1rem;
-        margin-bottom: .2rem;
-        font-weight: bold;
-    }
-    
-    .italics {
-        font-style: italic;
-    }
+  .project-item:hover {
+    transform: translateX(5px);
+  }
 
-    .company:not(:last-child) {
-        margin-bottom: .5rem;
-    }
-    
-    @media (min-width: 620px) {
-        .company {
-            display: grid;
-            grid-template-columns: clamp(8em, 20vw, 1.5rem) 1fr;
-            align-items: baseline;
-        }
+  .project-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
 
-        .contacts {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0;
+  .project-link:hover {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
 
-            > div:not(:last-child) {
-                margin-bottom: 0;
-            }
-        }
-    }
+  .project-arrow {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .project-link:hover .project-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
