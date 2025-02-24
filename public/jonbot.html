@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<!--[if !IE]><!-->
 <html lang="en">
-  <!--<![endif]-->
-
   <head>
-    <title>Jon Kim's Website</title>
+    <title>Chat with JonBot</title>
     <!-- Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Jon's Personal Website" />
+    <meta name="description" content="Chat with JonBot" />
     <meta name="author" content="Jon K" />
     <link rel="icon" href="https://i.imgur.com/kP6rBUi.png" type="image/gif" />
     <link
@@ -26,50 +23,79 @@
   </head>
 
   <body>
-    <header></header>
+    <header>
+      <h1 class="text-center text-2xl font-bold my-4">Chat with JonBot</h1>
+    </header>
     <main>
-      <section>
-        <div class="section-header">Projects</div>
-        <ul class="projects-list">
-          <li class="project-item">
-            <a href="https://tellfutureme.com" class="project-link">
-              <span class="project-title">
-                🎙️ TellFutureMe.com: Send a voice note to your future self
-              </span>
-              <span class="project-arrow">→</span>
-            </a>
-          </li>
-          <li class="project-item">
-            <a href="/jonbot.html" class="project-link">
-              <span class="project-title"> 💁‍♂️ Chat with JonBot </span>
-              <span class="project-arrow">→</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <div class="section-header">Contact</div>
-        <div class="contacts">
-          <div>
-            <a href="https://linkedin.com/in/jhyunkim">
-              <div>LinkedIn</div>
-              <span>@jhyunkim</span>
-            </a>
-          </div>
-          <div>
-            <a href="https://github.com/kimhjona">
-              <div>GitHub</div>
-              <span>@kimhjona</span>
-            </a>
-          </div>
-          <div>
-            <a href="mailto:kimhjona@gmail.com">
-              <div>Email</div>
-              <span>kimhjona [at] gmail.com</span>
-            </a>
+      <div class="container mx-auto px-4">
+        <div id="chat-container" class="w-full max-w-2xl mx-auto">
+          <div class="bg-white shadow-md rounded-lg w-full">
+            <div
+              id="chatbox"
+              class="p-4 sm:h-96 h-60 border-t rounded-lg overflow-y-auto"
+            >
+              <!-- Chat messages will be displayed here -->
+              <div class="mb-2 text-right">
+                <p
+                  class="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block"
+                >
+                  Hello...What is this?
+                </p>
+              </div>
+              <div class="mb-2">
+                <p
+                  class="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block"
+                >
+                  Hi! Welcome to JonBot. What do you want to know about Jon Kim?
+                </p>
+              </div>
+            </div>
+            <div class="p-4 border-t flex">
+              <input
+                id="user-input"
+                type="text"
+                placeholder="Type a message"
+                class="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                id="send-button"
+                class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300"
+              >
+                Send
+              </button>
+            </div>
+            <div
+              class="p-4 border-t flex flex-wrap justify-start gap-y-2 gap-x-2"
+            >
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                Who is Jon?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                Will Jon be my friend?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                What is Jon up to these days?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                안녕하세요?
+              </p>
+            </div>
           </div>
         </div>
-      </section>
+        <div class="text-center mt-6">
+          <a href="index.html" class="text-blue-500 hover:underline"
+            >← Back to Homepage</a
+          >
+        </div>
+      </div>
     </main>
 
     <script type="application/json" id="myInfo">
@@ -91,7 +117,7 @@
               "achievements": [
                 "Co-developed TritonX, a scalable web-based UI platform of real-time trading, analysis, and reporting tools, leading to the deprecation of legacy Java apps and creation of a client-facing OMS/EMS business offering",
                 "Led development of visualization and monitoring tools for Options trading desk as PnL grew 50% a year",
-                "Designed and maintained suite of grid and filter components, serving as the firm’s go-to developer tools",
+                "Designed and maintained suite of grid and filter components, serving as the firm's go-to developer tools",
                 "Contributed to library of custom tooling that enabled publishing from + subscribing to streaming data",
                 "Accelerated dev productivity by implementing scripts and build tools to automate repetitive workflows",
                 "Collaborated with designers and stakeholders to break down business goals into technical deliverables",
