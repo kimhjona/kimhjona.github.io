@@ -15,6 +15,8 @@ app.get("/", (req, res) => {
 
 // Proxy endpoint for AI21
 app.post("/api/chat", async (req, res) => {
+  console.log("?", req.body.messages[1].content);
+
   try {
     const response = await fetch(
       "https://api.ai21.com/studio/v1/chat/completions",

@@ -80,7 +80,12 @@
               <p
                 class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
               >
-                What is Jon up to these days?
+                What is Jon up to now?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                What languages does Jon speak?
               </p>
               <p
                 class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
@@ -106,9 +111,7 @@
           "email": "kimhjona@gmail.com",
           "website": "https://jona.kim",
           "linkedin": "https://linkedin.com/in/jhyunkim",
-          "phone": "818.489.1550",
-          "summary": "Experienced software engineer based out of Seattle, WA with over 5 years of experience in capital markets, financial services, and e-commerce. Interested in solving real-world problems with code, always striving to learn more. After a year-long sabbatical, aiming to join an ambitious team with a compelling product.",
-          "introduction": "I have extensive experience building web applications for capital markets, financial services, and ecommerce. I enjoy working with modern React, TypeScript, build tools, visualizations, and WebSockets. My goal is to continue to hone my craft at building concise, elegant, and useful software.",
+          "summary": "Experienced software engineer based out of Seattle, WA",
           "experience": [
             {
               "company": "Virtu Financial",
@@ -150,85 +153,25 @@
                 "Created widget template library optimized for cross-browser functionality, accessibility, and performance, leading to the inception of a self-serve product category for the business and an additional $30k+ in MRR",
                 "Produced hundreds of custom widgets for enterprise clients and provided technical onboarding support",
                 "Trained the two people hired to build custom widgets as the rate of onboarding clients grew 20% YoY"
-              ],
-              "tech_stack": [
-                "TypeScript",
-                "React/Redux",
-                "webpack",
-                "Node.js/npm",
-                "git",
-                "nivo/D3",
-                "HTML/CSS",
-                "AWS S3"
-              ]
-            }
-          ],
-          "coding_projects": [
-            {
-              "name": "Food Oasis LA",
-              "role": "Developer",
-              "period": "Jan 2017 - Jan 2018",
-              "description": "Co-led frontend team for a civic project aimed at raising awareness of food deserts by helping users find local fresh produce.",
-              "achievements": [
-                "Architected major functionalities including dynamic filtering of results based on future open times.",
-                "Mentored volunteers in setup, workflow, and feature development.",
-                "Automated redundant tasks and improved workflow efficiency with Node scripts, reducing onboarding costs.",
-                "Codebase was donated to and acquired by Youth Policy Institute in January 2018."
-              ]
-            },
-            {
-              "name": "DejaVue",
-              "role": "Developer and Co-creator",
-              "period": "November 2016 - February 2017",
-              "description": "A Vue.js visualization Chrome developer tool designed to enhance debugging capabilities within Vue applications.",
-              "achievements": [
-                "Developed a parsing algorithm to identify and retrieve component data from Vue expando properties.",
-                "Implemented a dynamic D3 tree to visualize the component hierarchy, aiding in understanding application data.",
-                "Introduced time-traveling debugging by rendering historical state using the Chrome API.",
-                "Optimized performance by checking local storage for changes, reducing unnecessary re-renders.",
-                "Achieved 3000+ active users and garnered 700+ stars on GitHub."
               ]
             }
           ],
           "friendship": [
             "Jon is not currently looking for new friends, but JonBot is always happy to chat"
           ],
-          "skills": {
-            "advanced": [
-              "React/Hooks",
-              "TypeScript",
-              "JavaScript",
-              "Redux",
-              "Node",
-              "visualizations and charts",
-              "WebSockets",
-              "HTML/CSS",
-              "AG Grid",
-              "analyzing and improving runtime performance"
-            ],
-            "intermediate": [
-              "build tools",
-              "Jest/Enzyme",
-              "Webpack",
-              "D3",
-              "Java",
-              "C++"
-            ]
-          },
           "languages": [
             "korean (upper intermediate)",
             "chinese (upper beginner)"
+            "spanish (beginner)",
           ],
           "education": [
             {
               "institution": "Georgia Institute of Technology",
-              "degree": "Master of Science, Computer Science",
-              "period": "2024 - 2027 (Expected)"
+              "degree": "Master of Science, Computer Science"
             },
             {
               "institution": "Occidental College",
-              "degree": "Bachelor of Arts, Economics & Math minor",
-              "period": "2010 - 2014"
+              "degree": "Bachelor of Arts, Economics & Math minor"
             }
           ],
           "interests": [
@@ -236,16 +179,10 @@
           ],
           "github": {
             "username": "kimhjona",
-            "url": "https://github.com/kimhjona",
-            "description": "Has 38 repositories available, showcasing various projects."
-          },
-          "podcast": {
-            "name": "Moon Tea Podcast",
-            "url": "moonteapodcast.com",
-            "description": "A podcast where Jon Kim and Hugh Berryman talk about Craft, Community, and Building Meaningful Careers, focusing on technology, design, and personal growth."
+            "url": "https://github.com/kimhjona"
           },
           "currently": [
-            "building cool personal projects",
+            "building a niche b2b software business that utilizes AI image and video generation to help companies better recruit, train, and retain talent",
             "taking grad school classes at Georgia Tech",
             "hosting dinner parties"
           ]
@@ -311,7 +248,7 @@
               },
               { role: "user", content: userMessage },
             ],
-            model: "jamba-1.5-mini",
+            model: "jamba-mini",
           }),
         })
           .then(function (response) {
