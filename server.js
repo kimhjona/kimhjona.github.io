@@ -13,6 +13,11 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// Add route for /jonbot
+app.get("/jonbot", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "jonbot.html"));
+});
+
 // Proxy endpoint for AI21
 app.post("/api/chat", async (req, res) => {
   console.log("?", req.body.messages[1].content);
