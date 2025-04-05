@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--[if !IE]><!-->
+<html lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <title>Jon's Spicy Content 🌶️</title>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Jon's Personal Website" />
+    <meta name="author" content="Jon K" />
+    <link rel="icon" href="https://i.imgur.com/kP6rBUi.png" type="image/gif" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    />
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
+      .modal-content {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        max-width: 400px;
+        margin: 15% auto;
+        text-align: center;
+      }
+      .content {
+        display: none;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      .recipe-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 2rem;
+        margin-top: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100">
+    <!-- Age Verification Modal -->
+    <div id="ageModal" class="modal">
+      <div class="modal-content">
+        <h2 class="text-xl font-bold mb-4">Age Verification Required</h2>
+        <p class="mb-4">Are you over 18?</p>
+        <button
+          onclick="verifyAge(false)"
+          class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+        >
+          No
+        </button>
+        <button
+          onclick="verifyAge(true)"
+          class="bg-green-500 text-white px-4 py-2 rounded mr-2 hover:bg-green-600"
+        >
+          Yes
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent" class="content">
+      <h1 class="text-4xl font-bold text-center mb-8">
+        Looking for spicy content? Here's a picture of my homemade hot sauce 🌶️
+      </h1>
+
+      <!-- Add your hot sauce image here -->
+      <div class="text-center mb-8">
+        <img
+          src="./images/hot_sauce.JPG"
+          alt="Jon's Homemade Fermented Hot Sauce"
+          class="mx-auto rounded-lg shadow-lg max-w-md"
+        />
+      </div>
+
+      <div class="recipe-card">
+        <h2 class="text-2xl font-bold mb-4">Jon's Hot Sauce Recipe 🔥</h2>
+
+        <h3 class="text-xl font-semibold mb-2">Ingredients:</h3>
+        <ul class="list-disc ml-6 mb-4">
+          <li>Habanero peppers</li>
+          <li>Garlic</li>
+          <li>Rice vinegar</li>
+          <li>Honey</li>
+          <li>Lime or lemon juice</li>
+          <li>Salt</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mb-2">Instructions:</h3>
+        <ol class="list-decimal ml-6 mb-4">
+          <li>Finely chop peppers and garlic</li>
+          <li>Mix together in a bowl</li>
+          <li>Store in the fridge for 1-2 days</li>
+          <li>Enjoy!</li>
+        </ol>
+
+        <p class="text-sm italic mt-4">
+          Warning: This sauce is hot enough to make your OnlyFans subscription
+          look tame in comparison
+        </p>
+      </div>
+      <div class="text-center mt-6">
+        <a href="index.html" class="text-blue-500 hover:underline"
+          >← Back to Homepage</a
+        >
+      </div>
+    </div>
+
+    <script>
+      // Show modal on page load
+      window.onload = function () {
+        document.getElementById("ageModal").style.display = "block";
+      };
+
+      // Age verification function
+      function verifyAge(isOver18) {
+        if (!isOver18) {
+          history.back();
+        } else {
+          document.getElementById("ageModal").style.display = "none";
+          document.getElementById("mainContent").style.display = "block";
+        }
+      }
+    </script>
+  </body>
+  <script>
+    window.va =
+      window.va ||
+      function () {
+        (window.vaq = window.vaq || []).push(arguments);
+      };
+  </script>
+</html>
