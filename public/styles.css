@@ -80,6 +80,15 @@ html {
     transform: translateX(5px);
   }
 
+  .contact-item {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    transition: transform 0.2s ease;
+  }
+
+  .contact-item:hover {
+    transform: translateX(5px);
+  }
   .project-link {
     display: flex;
     align-items: center;
