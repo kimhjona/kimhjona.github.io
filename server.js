@@ -4,8 +4,7 @@ const cors = require("cors");
 const path = require("path");
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "16kb" }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Move your index.html to a 'public' folder
@@ -23,26 +22,128 @@ app.get("/restricted", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "restricted.html"));
 });
 
+// ---------------------------------------------------------------- chat proxy
+
+// Only this site may call the proxy from a browser. Requests with no Origin
+// (same-origin fetches, curl, server to server) are still allowed through,
+// because CORS is enforced by the browser and cannot stop a scripted client.
+// This closes the drive-by case, not the determined one. Rate limiting below
+// is what caps the damage.
+const ALLOWED_ORIGINS = new Set([
+  "https://jona.kim",
+  "https://www.jona.kim",
+  "http://localhost:3000",
+]);
+
+const corsOptions = {
+  origin(origin, callback) {
+    callback(null, !origin || ALLOWED_ORIGINS.has(origin));
+  },
+};
+
+// Best effort only. Vercel may run several instances, each with its own map,
+// so a caller can get more than MAX_PER_WINDOW by hitting different instances.
+// It still turns "unlimited" into "annoying", which is the point.
+const WINDOW_MS = 60 * 1000;
+const MAX_PER_WINDOW = 10;
+const hits = new Map();
+
+function clientKey(req) {
+  const forwarded = req.headers["x-forwarded-for"];
+  if (typeof forwarded === "string" && forwarded.length > 0) {
+    return forwarded.split(",")[0].trim();
+  }
+  return req.socket.remoteAddress || "unknown";
+}
+
+function rateLimit(req, res, next) {
+  const now = Date.now();
+
+  // Keep the map from growing without bound on a long-lived instance.
+  if (hits.size > 5000) {
+    for (const [key, entry] of hits) {
+      if (now > entry.reset) hits.delete(key);
+    }
+  }
+
+  const key = clientKey(req);
+  const entry = hits.get(key);
+
+  if (!entry || now > entry.reset) {
+    hits.set(key, { count: 1, reset: now + WINDOW_MS });
+    return next();
+  }
+  if (entry.count >= MAX_PER_WINDOW) {
+    const retryAfter = Math.ceil((entry.reset - now) / 1000);
+    res.set("Retry-After", String(retryAfter));
+    return res.status(429).json({ error: "Too many requests. Try again shortly." });
+  }
+  entry.count += 1;
+  next();
+}
+
+const MAX_MESSAGES = 20;
+const MAX_TOTAL_CHARS = 8000;
+
+function validateChat(req, res, next) {
+  const messages = req.body && req.body.messages;
+
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return res.status(400).json({ error: "Body must include a non-empty messages array." });
+  }
+  if (messages.length > MAX_MESSAGES) {
+    return res.status(400).json({ error: `At most ${MAX_MESSAGES} messages.` });
+  }
+  for (const message of messages) {
+    if (!message || typeof message.role !== "string" || typeof message.content !== "string") {
+      return res.status(400).json({ error: "Each message needs a string role and content." });
+    }
+  }
+  const total = messages.reduce((sum, message) => sum + message.content.length, 0);
+  if (total > MAX_TOTAL_CHARS) {
+    return res.status(400).json({ error: "Conversation is too long." });
+  }
+  next();
+}
+
 // Proxy endpoint for AI21
-app.post("/api/chat", async (req, res) => {
-  console.log("?", req.body.messages[1].content);
+app.options("/api/chat", cors(corsOptions));
+app.post("/api/chat", cors(corsOptions), rateLimit, validateChat, async (req, res) => {
+  if (!process.env.API_KEY) {
+    console.error("API_KEY is not set");
+    return res.status(500).json({ error: "Server is not configured." });
+  }
+
+  // The model is pinned here rather than taken from the request, so a caller
+  // cannot swap in a more expensive one.
+  const payload = { messages: req.body.messages, model: "jamba-mini" };
+
+  const abort = new AbortController();
+  const timeout = setTimeout(() => abort.abort(), 25000);
 
   try {
-    const response = await fetch(
-      "https://api.ai21.com/studio/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.API_KEY}`,
-        },
-        body: JSON.stringify(req.body),
-      }
-    );
-    const data = await response.json();
-    res.json(data);
+    const response = await fetch("https://api.ai21.com/studio/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.API_KEY}`,
+      },
+      body: JSON.stringify(payload),
+      signal: abort.signal,
+    });
+
+    if (!response.ok) {
+      console.error("AI21 returned", response.status, await response.text());
+      return res.status(502).json({ error: "Upstream request failed." });
+    }
+    res.json(await response.json());
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    // Never hand the client the raw message: it can carry internal detail.
+    console.error("chat proxy failed:", error);
+    const status = error.name === "AbortError" ? 504 : 502;
+    res.status(status).json({ error: "Upstream request failed." });
+  } finally {
+    clearTimeout(timeout);
   }
 });
 
