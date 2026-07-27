@@ -22,6 +22,44 @@ app.get("/restricted", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "restricted.html"));
 });
 
+// ------------------------------------------------------------ project pages
+
+// Each project keeps its landing page in its own repo, on GitHub Pages. These
+// serve that page through here so it reads as jona.kim/weather-brief instead
+// of somebody else's domain. Every one of them is a single self-contained HTML
+// file, no images or stylesheets alongside it, which is what makes a straight
+// pass-through enough: there are no relative asset paths to rewrite.
+const PROJECT_PAGES = {
+  "/weather-brief": "https://kimhjona.github.io/weather-brief/",
+  "/solids": "https://kimhjona.github.io/solids/",
+};
+
+async function serveProjectPage(upstream, res) {
+  const abort = new AbortController();
+  const timeout = setTimeout(() => abort.abort(), 10000);
+  try {
+    const response = await fetch(upstream, { signal: abort.signal });
+    if (!response.ok) throw new Error(`upstream returned ${response.status}`);
+    const html = await response.text();
+    // Cached at the edge, so a visit does not usually cost a round trip to
+    // GitHub. Ten minutes means an edit to the project page shows up here
+    // soon enough without making this the slow path.
+    res.set("Cache-Control", "public, max-age=0, s-maxage=600, stale-while-revalidate=86400");
+    res.type("html").send(html);
+  } catch (error) {
+    // Never a dead link: if GitHub is unreachable, hand the visitor straight
+    // to the page it would have served.
+    console.error(`project page ${upstream} failed:`, error);
+    res.redirect(302, upstream);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+for (const [route, upstream] of Object.entries(PROJECT_PAGES)) {
+  app.get(route, (req, res) => serveProjectPage(upstream, res));
+}
+
 // ---------------------------------------------------------------- chat proxy
 
 // Only this site may call the proxy from a browser. Requests with no Origin
