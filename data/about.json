@@ -3,7 +3,6 @@
     "name": "Jon Kim",
     "location": "Seattle, WA",
     "email": "kimhjona@gmail.com",
-    "website": "https://jona.kim",
     "linkedin": "https://linkedin.com/in/jhyunkim",
     "summary": "Experienced software engineer based out of Seattle, WA",
     "experience": [
@@ -91,12 +90,6 @@
         "name": "Solids",
         "url": "https://jona.kim/solids",
         "description": "A baby-led weaning tracker that removes the mental load of meal planning. Reads a Google Sheet and emails the week's meals every Saturday.",
-        "year": 2026
-      },
-      {
-        "name": "JonBot",
-        "url": "https://jona.kim",
-        "description": "The chatbot you are currently talking to. It is Jon's homepage. Yes, this is a little strange.",
         "year": 2026
       },
       {

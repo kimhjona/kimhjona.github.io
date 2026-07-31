@@ -36,6 +36,15 @@
               class="p-4 sm:h-96 h-72 rounded-lg overflow-y-auto"
               aria-live="polite"
             >
+              <!-- Display only. The opener is not part of the transcript sent
+                   to the model, same as before. -->
+              <div class="mb-2 text-right">
+                <p
+                  class="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block"
+                >
+                  Hello...What is this?
+                </p>
+              </div>
               <div class="mb-2">
                 <p
                   class="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block"
@@ -76,7 +85,7 @@
               <p
                 class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
               >
-                Can I see his resume?
+                What's he up to these days?
               </p>
               <p
                 class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
@@ -196,40 +205,82 @@
         if (event.key === "Enter") send();
       });
 
-      // Model answers mention project urls and Jon's email. Turn them into real
-      // links without ever handing model output to innerHTML.
-      const URL_PATTERN =
-        /https?:\/\/[^\s<>"')\]]+|[\w.+-]+@[\w-]+\.[\w.-]*[\w-]/g;
+      // Model answers carry three kinds of link: markdown, a bare url, and Jon's
+      // email. All three become real links, and none of them go through
+      // innerHTML.
+      const LINK_PATTERN =
+        /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|https?:\/\/[^\s<>"')\]]+|[\w.+-]+@[\w-]+\.[\w.-]*[\w-]/g;
+
+      // A bare url reads better as jona.kim/solids than as the whole thing.
+      function shorten(url) {
+        return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+      }
 
       function appendLinkedText(parent, text) {
         let cursor = 0;
-        for (const match of text.matchAll(URL_PATTERN)) {
-          const found = match[0].replace(/[.,!?;:]+$/, "");
+        for (const match of text.matchAll(LINK_PATTERN)) {
+          const [whole, mdLabel, mdUrl] = match;
+          const trimmed = mdLabel ? whole : whole.replace(/[.,!?;:]+$/, "");
+          const target = mdUrl || trimmed;
+
           parent.appendChild(
             document.createTextNode(text.slice(cursor, match.index))
           );
           const link = document.createElement("a");
-          // Only these two schemes are ever constructed, so model output cannot
-          // produce a javascript: or data: url here.
-          link.href = found.startsWith("http") ? found : `mailto:${found}`;
-          link.textContent = found;
+          // Only http(s) and mailto are ever constructed, so model output
+          // cannot produce a javascript: or data: url here.
+          link.href = target.startsWith("http") ? target : `mailto:${target}`;
+          link.textContent = mdLabel || (target.startsWith("http") ? shorten(target) : target);
           link.target = "_blank";
           link.rel = "noopener noreferrer";
           link.className = "underline";
           parent.appendChild(link);
-          cursor = match.index + found.length;
+          cursor = match.index + trimmed.length;
         }
         parent.appendChild(document.createTextNode(text.slice(cursor)));
       }
 
-      function addMessage(message, classes, bubbleClasses) {
+      // The model is asked to put each project on its own line starting with a
+      // dash. Turn those into a real list rather than showing the dashes.
+      const BULLET = /^\s*(?:[-*•]|\d+[.)])\s+(.*)$/;
+
+      function renderReply(container, text) {
+        let list = null;
+        for (const rawLine of text.split("\n")) {
+          const line = rawLine.trim();
+          if (!line) {
+            list = null;
+            continue;
+          }
+          const bullet = line.match(BULLET);
+          if (bullet) {
+            if (!list) {
+              list = document.createElement("ul");
+              list.className = "list-disc pl-5 mt-1 space-y-1";
+              container.appendChild(list);
+            }
+            const item = document.createElement("li");
+            appendLinkedText(item, bullet[1]);
+            list.appendChild(item);
+          } else {
+            list = null;
+            const paragraph = document.createElement("p");
+            if (container.childNodes.length) paragraph.className = "mt-2";
+            appendLinkedText(paragraph, line);
+            container.appendChild(paragraph);
+          }
+        }
+      }
+
+      function addMessage(message, classes, bubbleClasses, rich) {
         const messageElement = document.createElement("div");
         messageElement.classList.add(...classes);
-        const bubble = document.createElement("p");
+        const bubble = document.createElement(rich ? "div" : "p");
         bubble.className = bubbleClasses;
-        // Text nodes and anchors only: neither what a visitor types nor what
-        // the model returns should be able to put markup on the page.
-        appendLinkedText(bubble, message);
+        // Text nodes, anchors and list items only: neither what a visitor types
+        // nor what the model returns should be able to put markup on the page.
+        if (rich) renderReply(bubble, message);
+        else appendLinkedText(bubble, message);
         messageElement.appendChild(bubble);
         chatbox.appendChild(messageElement);
         chatbox.scrollTop = chatbox.scrollHeight;
@@ -249,7 +300,9 @@
           message,
           ["mb-2"],
           "bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block " +
-            (extraClasses || "")
+            (extraClasses || ""),
+          // Canned replies pass their own formatting and are rendered as-is.
+          !extraClasses
         );
       }
 
@@ -277,7 +330,7 @@
 
       const RESUME_REPLY =
         "There's no PDF here. You're looking at the resume, it just talks back. " +
-        "If you want the paper version, ask him: kimhjona@gmail.com";
+        "If you want the paper version, ask him using any of the links below.";
 
       // Canned answers, matched before spending an API call. They fire every
       // time, which a small model would not.
