@@ -26,12 +26,11 @@ app.get("/restricted", (req, res) => {
 
 // Each project keeps its landing page in its own repo, on GitHub Pages. These
 // serve that page through here so it reads as jona.kim/weather-brief instead
-// of somebody else's domain. Every one of them is a single self-contained HTML
-// file, no images or stylesheets alongside it, which is what makes a straight
-// pass-through enough: there are no relative asset paths to rewrite.
+// of somebody else's domain.
 const PROJECT_PAGES = {
   "/weather-brief": "https://kimhjona.github.io/weather-brief/",
   "/solids": "https://kimhjona.github.io/solids/",
+  "/improv-blues": "https://kimhjona.github.io/improvblues/",
 };
 
 async function serveProjectPage(upstream, res) {
@@ -41,11 +40,19 @@ async function serveProjectPage(upstream, res) {
     const response = await fetch(upstream, { signal: abort.signal });
     if (!response.ok) throw new Error(`upstream returned ${response.status}`);
     const html = await response.text();
+    // Improv Blues keeps its stylesheet in the directory beside it, which the
+    // first two pages did not. A base tag points every relative path in the
+    // page back at the repo it came from, so the pass-through stays a
+    // pass-through instead of rewriting urls one at a time.
+    const based = html.replace(
+      /<head([^>]*)>/i,
+      `<head$1><base href="${upstream}">`
+    );
     // Cached at the edge, so a visit does not usually cost a round trip to
     // GitHub. Ten minutes means an edit to the project page shows up here
     // soon enough without making this the slow path.
     res.set("Cache-Control", "public, max-age=0, s-maxage=600, stale-while-revalidate=86400");
-    res.type("html").send(html);
+    res.type("html").send(based);
   } catch (error) {
     // Never a dead link: if GitHub is unreachable, hand the visitor straight
     // to the page it would have served.
