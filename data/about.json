@@ -1,0 +1,160 @@
+{
+  "about_me": {
+    "name": "Jon Kim",
+    "location": "Seattle, WA",
+    "email": "kimhjona@gmail.com",
+    "website": "https://jona.kim",
+    "linkedin": "https://linkedin.com/in/jhyunkim",
+    "summary": "Experienced software engineer based out of Seattle, WA",
+    "experience": [
+      {
+        "company": "Meta",
+        "role": "Software Engineer",
+        "period": "March 2026 - present"
+      },
+      {
+        "company": "Virtu Financial",
+        "role": "Software Engineer",
+        "period": "March 2020 - June 2023",
+        "achievements": [
+          "Co-developed TritonX, a scalable web-based UI platform of real-time trading, analysis, and reporting tools, leading to the deprecation of legacy Java apps and creation of a client-facing OMS/EMS business offering",
+          "Led development of visualization and monitoring tools for Options trading desk as PnL grew 50% a year",
+          "Designed and maintained suite of grid and filter components, serving as the firm's go-to developer tools",
+          "Contributed to library of custom tooling that enabled publishing from + subscribing to streaming data",
+          "Accelerated dev productivity by implementing scripts and build tools to automate repetitive workflows",
+          "Collaborated with designers and stakeholders to break down business goals into technical deliverables",
+          "Mentored interns and onboarded developers via pair programming, info sessions, and code feedback"
+        ],
+        "tech_stack": [
+          "TypeScript",
+          "React/Hooks",
+          "WebSockets",
+          "webpack",
+          "Node.js/npm",
+          "Java",
+          "API Gateway",
+          "Jest/Enzyme",
+          "ag-grid",
+          "Material UI",
+          "Storybook",
+          "SCSS",
+          "redux-saga",
+          "TeamCity CI/CD"
+        ]
+      },
+      {
+        "company": "Friendbuy",
+        "role": "Software Developer",
+        "period": "May 2018 - Feb 2020",
+        "achievements": [
+          "Co-developed the design and implementation of the client-facing widget editor, simplifying the client onboarding process and increasing per capita client success manager output by 25%",
+          "Built analytics dashboard using custom D3 visualizations to provide insights into key metrics, enabling clients to independently monitor the progress of their marketing campaigns",
+          "Created widget template library optimized for cross-browser functionality, accessibility, and performance, leading to the inception of a self-serve product category for the business and an additional $30k+ in MRR",
+          "Produced hundreds of custom widgets for enterprise clients and provided technical onboarding support",
+          "Trained the two people hired to build custom widgets as the rate of onboarding clients grew 20% YoY"
+        ]
+      }
+    ],
+    "friendship": [
+      "Jon is not currently looking for new friends, but JonBot is always happy to chat"
+    ],
+    "languages": [
+      "korean (upper intermediate)",
+      "chinese (upper beginner)",
+      "spanish (beginner)"
+    ],
+    "education": [
+      {
+        "institution": "Georgia Institute of Technology",
+        "degree": "Master of Science, Computer Science"
+      },
+      {
+        "institution": "Occidental College",
+        "degree": "Bachelor of Arts, Economics & Math minor"
+      }
+    ],
+    "interests": [
+      "Traveled to about 50 cities around the world in 2023, studying Mandarin Chinese and Korean"
+    ],
+    "github": {
+      "username": "kimhjona",
+      "url": "https://github.com/kimhjona"
+    },
+    "projects": [
+      {
+        "name": "Weather Brief",
+        "url": "https://jona.kim/weather-brief",
+        "description": "A morning weather text that tells you how to dress and whether to bring an umbrella.",
+        "year": 2026
+      },
+      {
+        "name": "Solids",
+        "url": "https://jona.kim/solids",
+        "description": "A baby-led weaning tracker that removes the mental load of meal planning. Reads a Google Sheet and emails the week's meals every Saturday.",
+        "year": 2026
+      },
+      {
+        "name": "JonBot",
+        "url": "https://jona.kim",
+        "description": "The chatbot you are currently talking to. It is Jon's homepage. Yes, this is a little strange.",
+        "year": 2026
+      },
+      {
+        "name": "TellFutureMe",
+        "url": "https://tell-future-me.vercel.app",
+        "description": "Write a message now, receive it later.",
+        "year": 2025
+      },
+      {
+        "name": "Net Worth Tracker",
+        "url": "https://github.com/kimhjona/nwtracker",
+        "description": "A personal net worth tracker. Source only, no hosted version.",
+        "year": 2025
+      },
+      {
+        "name": "Improv Blues",
+        "url": "https://kimhjona.github.io/improvblues/",
+        "description": "A blues jam session game. Desktop only.",
+        "year": 2025
+      },
+      {
+        "name": "Almost Hacker News",
+        "url": "https://kimhjona.github.io/almost-hacker-news/",
+        "description": "A Hacker News clone. The name is the disclaimer.",
+        "year": 2024
+      },
+      {
+        "name": "Casio Watch Repair",
+        "url": "https://casiowatchrepair.com",
+        "description": "A website for a watch repair business.",
+        "year": 2024
+      },
+      {
+        "name": "Korean with Miss Kang",
+        "url": "https://github.com/kimhjona/koreanwithmisskang",
+        "description": "A site for a Korean language tutor. The domain is retired, the source is still up.",
+        "year": 2023
+      },
+      {
+        "name": "Moon Tea Podcast",
+        "url": "https://github.com/kimhjona/moonteapodcast",
+        "description": "A podcast site.",
+        "year": 2023
+      },
+      {
+        "name": "FTW Equity",
+        "url": "https://github.com/kimhjona/ftwequity",
+        "description": "A site for an equity firm. The domain is retired, the source is still up.",
+        "year": 2022
+      },
+      {
+        "name": "sandy.photo",
+        "url": "https://github.com/kimhjona/sandy.photo",
+        "description": "A portfolio site Jon built for his mother to showcase her photography. The domain is retired, the source is still up.",
+        "year": 2021
+      }
+    ],
+    "projects_note": "This list covers Jon's real projects. Older bootcamp and practice repositories are on his GitHub but are not worth discussing.",
+    "currently": ["Working at Meta", "Being a dad and trying to get enough sleep"]
+  }
+}

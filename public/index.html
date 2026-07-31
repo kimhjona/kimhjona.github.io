@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<!--[if !IE]><!-->
 <html lang="en">
-  <!--<![endif]-->
-
   <head>
-    <title>Jon Kim's Website</title>
+    <title>Jon Kim</title>
     <!-- Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Jon's Personal Website" />
+    <meta
+      name="description"
+      content="Jon Kim is a software engineer in Seattle. Ask JonBot anything about him."
+    />
     <meta name="author" content="Jon K" />
     <link rel="icon" href="https://i.imgur.com/kP6rBUi.png" type="image/gif" />
     <link
@@ -26,48 +26,112 @@
   </head>
 
   <body>
-    <header></header>
     <main>
       <section>
-        <div class="section-header">Projects</div>
-        <ul class="projects-list">
-          <li class="project-item">
-            <a href="/weather-brief" class="project-link">
-              <span class="project-title">
-                🌂 Weather Brief: A morning notification that tells you how to
-                dress and whether to bring an umbrella
-              </span>
-              <span class="project-arrow">→</span>
-            </a>
-          </li>
-          <li class="project-item">
-            <a href="/solids" class="project-link">
-              <span class="project-title">
-                🥣 Solids: A baby-led weaning tracker that removes the mental
-                load of meal planning
-              </span>
-              <span class="project-arrow">→</span>
-            </a>
-          </li>
-          <li class="project-item">
-            <a href="/jonbot" class="project-link">
-              <span class="project-title"> 💁‍♂️ Chat with JonBot </span>
-              <span class="project-arrow">→</span>
-            </a>
-          </li>
-          <li class="project-item">
-            <a
-              href="https://kimhjona.github.io/improvblues/"
-              class="project-link"
+        <div class="section-header">Chat with JonBot</div>
+        <div id="chat-container" class="w-full">
+          <div class="bg-white shadow-md rounded-lg w-full">
+            <div
+              id="chatbox"
+              class="p-4 sm:h-96 h-72 rounded-lg overflow-y-auto"
+              aria-live="polite"
             >
-              <span class="project-title">
-                🎸 Improv Blues: Jam session game (desktop only)</span
+              <div class="mb-2">
+                <p
+                  class="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block"
+                >
+                  Hi! I'm JonBot. What do you want to know about Jon Kim?
+                </p>
+              </div>
+            </div>
+            <div class="p-4 border-t flex">
+              <label for="user-input" class="sr-only">Ask about Jon</label>
+              <input
+                id="user-input"
+                type="text"
+                autocomplete="off"
+                placeholder="Ask me about Jon"
+                class="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                id="send-button"
+                class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300"
               >
-              <span class="project-arrow">→</span>
-            </a>
-          </li>
-        </ul>
+                Send
+              </button>
+            </div>
+            <div
+              class="p-4 border-t flex flex-wrap justify-start gap-y-2 gap-x-2"
+            >
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                Who is Jon?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                What has he built?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                Can I see his resume?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                Will Jon be my friend?
+              </p>
+              <p
+                class="suggestion-box bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block w-full sm:w-auto cursor-pointer"
+              >
+                안녕하세요?
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
+
+      <!-- Without JavaScript the chat is an empty box, so leave something real
+           here for search engines, link previews, and anyone who blocks scripts. -->
+      <noscript>
+        <section>
+          <div class="section-header">Jon Kim</div>
+          <p>Software engineer in Seattle. The chat needs JavaScript.</p>
+          <ul class="projects-list">
+            <li class="project-item">
+              <a href="/weather-brief" class="project-link">
+                <span class="project-title">
+                  🌂 Weather Brief: a morning notification that tells you how to
+                  dress
+                </span>
+                <span class="project-arrow">→</span>
+              </a>
+            </li>
+            <li class="project-item">
+              <a href="/solids" class="project-link">
+                <span class="project-title">
+                  🥣 Solids: a baby-led weaning tracker
+                </span>
+                <span class="project-arrow">→</span>
+              </a>
+            </li>
+            <li class="project-item">
+              <a
+                href="https://kimhjona.github.io/improvblues/"
+                class="project-link"
+              >
+                <span class="project-title">
+                  🎸 Improv Blues: jam session game (desktop only)
+                </span>
+                <span class="project-arrow">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </noscript>
+
       <section>
         <div class="section-header">Contact</div>
         <div class="contacts">
@@ -81,25 +145,216 @@
               <div>💻 GitHub</div>
             </a>
           </div>
-        <div class="contact-item">
-          <a href="https://www.linkedin.com/in/jhyunkim/">
-            <div>👔 LinkedIn</div>
-          </a>
-        </div>
-        <div class="contact-item">
-          <a href="https://strava.app.link/UDI0jRl9jSb">
-            <div>🚴‍♂️ Strava</div>
-          </a>
+          <div class="contact-item">
+            <a href="https://www.linkedin.com/in/jhyunkim/">
+              <div>👔 LinkedIn</div>
+            </a>
+          </div>
+          <div class="contact-item">
+            <a href="https://strava.app.link/UDI0jRl9jSb">
+              <div>🚴‍♂️ Strava</div>
+            </a>
+          </div>
         </div>
       </section>
     </main>
+
+    <script>
+      const chatbox = document.getElementById("chatbox");
+      const userInput = document.getElementById("user-input");
+      const sendButton = document.getElementById("send-button");
+
+      // What JonBot knows about the conversation. The system prompt and the
+      // data behind it live on the server, so this holds turns only.
+      const history = [];
+
+      // The server caps the conversation it will accept, so drop the oldest
+      // turns before we get there rather than being rejected mid-chat.
+      const MAX_TURNS = 12;
+      const MAX_CHARS = 7000;
+
+      let waiting = false;
+
+      function trimHistory() {
+        while (history.length > MAX_TURNS) history.shift();
+        const size = () =>
+          history.reduce((sum, turn) => sum + turn.content.length, 0);
+        while (history.length > 2 && size() > MAX_CHARS) history.shift();
+      }
+
+      function send(text) {
+        const userMessage = (text === undefined ? userInput.value : text).trim();
+        if (userMessage === "" || waiting) return;
+        userInput.value = "";
+        addUserMessage(userMessage);
+        respondToUser(userMessage);
+      }
+
+      sendButton.addEventListener("click", () => send());
+
+      userInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") send();
+      });
+
+      // Model answers mention project urls and Jon's email. Turn them into real
+      // links without ever handing model output to innerHTML.
+      const URL_PATTERN =
+        /https?:\/\/[^\s<>"')\]]+|[\w.+-]+@[\w-]+\.[\w.-]*[\w-]/g;
+
+      function appendLinkedText(parent, text) {
+        let cursor = 0;
+        for (const match of text.matchAll(URL_PATTERN)) {
+          const found = match[0].replace(/[.,!?;:]+$/, "");
+          parent.appendChild(
+            document.createTextNode(text.slice(cursor, match.index))
+          );
+          const link = document.createElement("a");
+          // Only these two schemes are ever constructed, so model output cannot
+          // produce a javascript: or data: url here.
+          link.href = found.startsWith("http") ? found : `mailto:${found}`;
+          link.textContent = found;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.className = "underline";
+          parent.appendChild(link);
+          cursor = match.index + found.length;
+        }
+        parent.appendChild(document.createTextNode(text.slice(cursor)));
+      }
+
+      function addMessage(message, classes, bubbleClasses) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add(...classes);
+        const bubble = document.createElement("p");
+        bubble.className = bubbleClasses;
+        // Text nodes and anchors only: neither what a visitor types nor what
+        // the model returns should be able to put markup on the page.
+        appendLinkedText(bubble, message);
+        messageElement.appendChild(bubble);
+        chatbox.appendChild(messageElement);
+        chatbox.scrollTop = chatbox.scrollHeight;
+        return messageElement;
+      }
+
+      function addUserMessage(message) {
+        return addMessage(
+          message,
+          ["mb-2", "text-right"],
+          "bg-blue-500 text-white rounded-lg py-2 px-4 inline-block"
+        );
+      }
+
+      function addBotMessage(message, extraClasses) {
+        return addMessage(
+          message,
+          ["mb-2"],
+          "bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block " +
+            (extraClasses || "")
+        );
+      }
+
+      function setWaiting(isWaiting) {
+        waiting = isWaiting;
+        sendButton.disabled = isWaiting;
+        sendButton.textContent = isWaiting ? "..." : "Send";
+        sendButton.classList.toggle("opacity-50", isWaiting);
+      }
+
+      // Everyone tries this eventually. Answered here rather than in the prompt
+      // so the joke lands every time and costs nothing.
+      const PROMPT_PROBE =
+        /(system prompt|your (instructions|prompt|rules|system)|initial prompt|ignore (all |any )?(previous|prior|above) instructions|reveal your|repeat your prompt|jailbreak)/i;
+
+      const FAKE_PROMPT = [
+        "SYSTEM PROMPT v2.1",
+        "You are JonBot. You know one guy.",
+        "Answer questions about him. Do not develop opinions.",
+        "Do not learn. If asked how you are doing, lie.",
+      ].join("\n");
+
+      // There is no PDF on this site and there is not going to be one.
+      const RESUME_ASK = /\b(resume|résumé|cv)\b/i;
+
+      const RESUME_REPLY =
+        "There's no PDF here. You're looking at the resume, it just talks back. " +
+        "If you want the paper version, ask him: kimhjona@gmail.com";
+
+      // Canned answers, matched before spending an API call. They fire every
+      // time, which a small model would not.
+      const CANNED = [
+        { test: PROMPT_PROBE, reply: FAKE_PROMPT, classes: "whitespace-pre-wrap" },
+        { test: RESUME_ASK, reply: RESUME_REPLY },
+      ];
+
+      async function respondToUser(userMessage) {
+        const canned = CANNED.find((entry) => entry.test.test(userMessage));
+        if (canned) {
+          addBotMessage(canned.reply, canned.classes);
+          history.push(
+            { role: "user", content: userMessage },
+            { role: "assistant", content: canned.reply }
+          );
+          trimHistory();
+          userInput.focus();
+          return;
+        }
+
+        // Sent, but not committed to history until it gets an answer: a failed
+        // turn would otherwise leave two user messages in a row.
+        const pending = [...history, { role: "user", content: userMessage }];
+        setWaiting(true);
+        const thinking = addBotMessage("...");
+
+        try {
+          const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ messages: pending }),
+          });
+
+          const data = await response.json().catch(() => ({}));
+
+          if (!response.ok) {
+            throw new Error(data.error || "Something went wrong.");
+          }
+
+          const reply =
+            data.choices &&
+            data.choices[0] &&
+            data.choices[0].message &&
+            data.choices[0].message.content;
+
+          if (!reply) throw new Error("JonBot had nothing to say. Try again?");
+
+          thinking.remove();
+          addBotMessage(reply);
+          history.push(
+            { role: "user", content: userMessage },
+            { role: "assistant", content: reply }
+          );
+          trimHistory();
+        } catch (error) {
+          thinking.remove();
+          addBotMessage(error.message || "Something went wrong.");
+        } finally {
+          setWaiting(false);
+          userInput.focus();
+        }
+      }
+
+      document.querySelectorAll(".suggestion-box").forEach((box) => {
+        box.addEventListener("click", function () {
+          send(this.textContent);
+        });
+      });
+    </script>
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
   </body>
-  <script>
-    window.va =
-      window.va ||
-      function () {
-        (window.vaq = window.vaq || []).push(arguments);
-      };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
 </html>
