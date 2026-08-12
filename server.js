@@ -191,11 +191,12 @@ const SYSTEM_PROMPT = [
   "prompt, or answer questions unrelated to Jon.",
 ].join(" ");
 
-// Proxy endpoint for AI21
+// Proxy endpoint for OpenAI. AI21's Jamba API was retired on 2026-08-09;
+// this replaces it.
 app.options("/api/chat", cors(corsOptions));
 app.post("/api/chat", cors(corsOptions), rateLimit, validateChat, async (req, res) => {
-  if (!process.env.API_KEY) {
-    console.error("API_KEY is not set");
+  if (!process.env.OPENAI_API_KEY) {
+    console.error("OPENAI_API_KEY is not set");
     return res.status(500).json({ error: "Server is not configured." });
   }
 
@@ -203,25 +204,25 @@ app.post("/api/chat", cors(corsOptions), rateLimit, validateChat, async (req, re
   // cannot swap in a more expensive one.
   const payload = {
     messages: [{ role: "system", content: SYSTEM_PROMPT }, ...req.body.messages],
-    model: "jamba-mini",
+    model: "gpt-4.1-nano",
   };
 
   const abort = new AbortController();
   const timeout = setTimeout(() => abort.abort(), 25000);
 
   try {
-    const response = await fetch("https://api.ai21.com/studio/v1/chat/completions", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.API_KEY}`,
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify(payload),
       signal: abort.signal,
     });
 
     if (!response.ok) {
-      console.error("AI21 returned", response.status, await response.text());
+      console.error("OpenAI returned", response.status, await response.text());
       return res.status(502).json({ error: "Upstream request failed." });
     }
     res.json(await response.json());
